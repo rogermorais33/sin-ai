@@ -1,14 +1,15 @@
-import './index.css';
-import * as React from 'react';
-import Drag from '../../components/drag-and-drop';
 
+const OpenAI = require("openai");
+const openai = new OpenAI();
 
-function Home() {
-  return (
-    <div className='root'>
-      <Drag />
-    </div>
-  )
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    model: "gpt-3.5-turbo",
+  });
+
+  console.log(completion.choices[0]);
+  console.log("completion.choices[0]");
 }
 
-export default Home;
+main();
